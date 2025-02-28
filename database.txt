@@ -45,6 +45,23 @@ CREATE TABLE Participant (
     FOREIGN KEY (uid) REFERENCES User(uid) ON DELETE CASCADE
 );
 
+INSERT INTO User (uid, Email, Full_name, Password, Date_of_Birth, Gender) VALUES
+(1, 'user1@example.com', 'Alice Smith', 'password123', '2000-05-15', 'Female'),
+(2, 'user2@example.com', 'Bob Johnson', 'password456', '1998-08-22', 'Male'),
+(3, 'user3@example.com', 'Charlie Brown', 'password789', '2002-12-10', 'Male');
+
+
+INSERT INTO Category (cid, name) VALUES
+(1, 'กีฬา'),
+(2, 'วิชาการ'),
+(3, 'บันเทิง');
+
+
+INSERT INTO Activity (aid, name, start_date, end_date, uid, location, description, cid) VALUES
+(1, 'แข่งขันฟุตบอล', '2025-03-10', '2025-03-12', 1, 'สนามกีฬาโรงเรียน', 'การแข่งขันฟุตบอลระดับโรงเรียน', 1),
+(2, 'ค่ายเขียนโปรแกรม', '2025-04-01', '2025-04-05', 2, 'ห้องคอมพิวเตอร์', 'ค่ายอบรมเขียนโปรแกรม Python', 2),
+(3, 'ดนตรีสด', '2025-06-20', '2025-06-21', 3, 'หอประชุม', 'งานแสดงดนตรีสดจากนักเรียน', 3);
+
 
 INSERT INTO Registration (rid, uid, aid, status) VALUES
 (1, 2, 1, 'Pending'),  -- Bob ลงทะเบียนแข่งฟุตบอล (รออนุมัติ)
@@ -57,14 +74,7 @@ INSERT INTO Participant (pid, check_status, aid, uid, status) VALUES
 (2, 'ไม่เข้า', 1, 2, 'Pending'),  -- Bob รออนุมัติแข่งขันฟุตบอล
 (3, 'ไม่เข้า', 1, 3, 'Pending'); -- Charlie รออนุมัติแข่งขันฟุตบอล
 
-INSERT INTO Registration (rid, uid, aid, status) VALUES
-(1, 2, 1, 'Pending'),  -- Bob ลงทะเบียนแข่งฟุตบอล (รออนุมัติ)
-(2, 3, 1, 'Pending'),  -- Charlie ลงทะเบียนแข่งฟุตบอล (รออนุมัติ)
-(3, 1, 2, 'Approved'); -- Alice ได้รับอนุมัติให้เข้าค่ายเขียนโปรแกรมแล้ว
 
 
-INSERT INTO Activity (aid, name, start_date, end_date, uid, location, description, cid) VALUES
-(1, 'แข่งขันฟุตบอล', '2025-03-10', '2025-03-12', 1, 'สนามกีฬาโรงเรียน', 'การแข่งขันฟุตบอลระดับโรงเรียน', 1),
-(2, 'ค่ายเขียนโปรแกรม', '2025-04-01', '2025-04-05', 2, 'ห้องคอมพิวเตอร์', 'ค่ายอบรมเขียนโปรแกรม Python', 2),
-(3, 'ดนตรีสด', '2025-06-20', '2025-06-21', 3, 'หอประชุม', 'งานแสดงดนตรีสดจากนักเรียน', 3);
+
 
