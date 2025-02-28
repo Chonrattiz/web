@@ -58,7 +58,58 @@
         <div class="row" style="padding: 20px; text-align: left; margin-left: 200px;">
             <h2>กิจกรรมที่น่าสนใจ</h2>
         </div>
-        <div class="row"></div>
+        <div style="flex: 1; padding: 20px; background-color: #f1f1f1;">
+        <div style="display: flex; gap: 10px;">
+            <div style="flex: 1; padding: 10px; background-color: #e0e0e0; text-align: center;">
+                <h4>Column 1</h4>
+                <p>Content for Column 1</p>
+            </div>
+            <div style="flex: 1; padding: 10px; background-color: #d1d1d1; text-align: center;">
+                <h4>Column 2</h4>
+                <p>Content for Column 2</p>
+            </div>
+            <div style="flex: 1; padding: 10px; background-color: #c1c1c1; text-align: center;">
+                <h4>Column 3</h4>
+                <p>Content for Column 3</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Box 2 -->
+    <div style="flex: 1; padding: 20px; background-color: #d1d1d1;">
+        <div style="display: flex; gap: 10px;">
+            <div style="flex: 1; padding: 10px; background-color: #f0f0f0; text-align: center;">
+                <h4>Column 1</h4>
+                <p>Content for Column 1</p>
+            </div>
+            <div style="flex: 1; padding: 10px; background-color: #e0e0e0; text-align: center;">
+                <h4>Column 2</h4>
+                <p>Content for Column 2</p>
+            </div>
+            <div style="flex: 1; padding: 10px; background-color: #d0d0d0; text-align: center;">
+                <h4>Column 3</h4>
+                <p>Content for Column 3</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Box 3 -->
+    <div style="flex: 1; padding: 20px; background-color: #b1b1b1;">
+        <div style="display: flex; gap: 10px;">
+            <div style="flex: 1; padding: 10px; background-color: #e8e8e8; text-align: center;">
+                <h4>Column 1</h4>
+                <p>Content for Column 1</p>
+            </div>
+            <div style="flex: 1; padding: 10px; background-color: #d8d8d8; text-align: center;">
+                <h4>Column 2</h4>
+                <p>Content for Column 2</p>
+            </div>
+            <div style="flex: 1; padding: 10px; background-color: #c8c8c8; text-align: center;">
+                <h4>Column 3</h4>
+                <p>Content for Column 3</p>
+            </div>
+        </div>
+    </div>
         </div>
 
 
