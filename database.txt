@@ -1,0 +1,70 @@
+CREATE TABLE User (
+    uid INT AUTO_INCREMENT PRIMARY KEY,
+    Email VARCHAR(255) NOT NULL UNIQUE,
+    Full_name VARCHAR(255) NOT NULL,
+    Password VARCHAR(60) NOT NULL,  -- ลดขนาดให้เหมาะสมกับการเข้ารหัส (bcrypt)
+    Date_of_Birth DATE NOT NULL,
+    Gender ENUM('Male', 'Female') NOT NULL
+);
+
+CREATE TABLE Category (
+    cid INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL UNIQUE
+);
+
+CREATE TABLE Activity (
+    aid INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    uid INT NOT NULL,  -- เจ้าของกิจกรรม (User ที่สร้าง)
+    location VARCHAR(255) NOT NULL,
+    description VARCHAR(255),
+    cid INT NOT NULL,  -- หมวดหมู่ของกิจกรรม
+    FOREIGN KEY (uid) REFERENCES User(uid) ON DELETE CASCADE,
+    FOREIGN KEY (cid) REFERENCES Category(cid) ON DELETE CASCADE
+);
+
+CREATE TABLE Registration (
+    rid INT AUTO_INCREMENT PRIMARY KEY,
+    uid INT NOT NULL,  -- ใครสมัครเข้าร่วมกิจกรรม
+    aid INT NOT NULL,  -- สมัครเข้าร่วมกิจกรรมอะไร
+    status ENUM('Pending', 'Approved', 'Rejected') NOT NULL DEFAULT 'Pending',
+    FOREIGN KEY (uid) REFERENCES User(uid) ON DELETE CASCADE,
+    FOREIGN KEY (aid) REFERENCES Activity(aid) ON DELETE CASCADE
+);
+
+
+CREATE TABLE Participant (
+    pid INT AUTO_INCREMENT PRIMARY KEY,
+    check_status ENUM('ไม่เข้า', 'เข้า') NOT NULL DEFAULT 'ไม่เข้า',
+    aid INT NOT NULL,  -- ผู้เข้าร่วมกิจกรรมอะไร
+    uid INT NOT NULL,  -- ใครเข้าร่วมกิจกรรม
+    status ENUM('Pending', 'Approved', 'Rejected') NOT NULL DEFAULT 'Pending',
+    FOREIGN KEY (aid) REFERENCES Activity(aid) ON DELETE CASCADE,
+    FOREIGN KEY (uid) REFERENCES User(uid) ON DELETE CASCADE
+);
+
+
+INSERT INTO Registration (rid, uid, aid, status) VALUES
+(1, 2, 1, 'Pending'),  -- Bob ลงทะเบียนแข่งฟุตบอล (รออนุมัติ)
+(2, 3, 1, 'Pending'),  -- Charlie ลงทะเบียนแข่งฟุตบอล (รออนุมัติ)
+(3, 1, 2, 'Approved'); -- Alice ได้รับอนุมัติให้เข้าค่ายเขียนโปรแกรมแล้ว
+
+
+INSERT INTO Participant (pid, check_status, aid, uid, status) VALUES
+(1, 'เข้า', 2, 1, 'Approved'),  -- Alice ได้รับอนุมัติและเข้าร่วมกิจกรรมค่ายเขียนโปรแกรม
+(2, 'ไม่เข้า', 1, 2, 'Pending'),  -- Bob รออนุมัติแข่งขันฟุตบอล
+(3, 'ไม่เข้า', 1, 3, 'Pending'); -- Charlie รออนุมัติแข่งขันฟุตบอล
+
+INSERT INTO Registration (rid, uid, aid, status) VALUES
+(1, 2, 1, 'Pending'),  -- Bob ลงทะเบียนแข่งฟุตบอล (รออนุมัติ)
+(2, 3, 1, 'Pending'),  -- Charlie ลงทะเบียนแข่งฟุตบอล (รออนุมัติ)
+(3, 1, 2, 'Approved'); -- Alice ได้รับอนุมัติให้เข้าค่ายเขียนโปรแกรมแล้ว
+
+
+INSERT INTO Activity (aid, name, start_date, end_date, uid, location, description, cid) VALUES
+(1, 'แข่งขันฟุตบอล', '2025-03-10', '2025-03-12', 1, 'สนามกีฬาโรงเรียน', 'การแข่งขันฟุตบอลระดับโรงเรียน', 1),
+(2, 'ค่ายเขียนโปรแกรม', '2025-04-01', '2025-04-05', 2, 'ห้องคอมพิวเตอร์', 'ค่ายอบรมเขียนโปรแกรม Python', 2),
+(3, 'ดนตรีสด', '2025-06-20', '2025-06-21', 3, 'หอประชุม', 'งานแสดงดนตรีสดจากนักเรียน', 3);
+
