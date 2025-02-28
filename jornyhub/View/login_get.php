@@ -1,96 +1,55 @@
+<!DOCTYPE html>
+<html lang="th">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เข้าสู่ระบบ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-    
-
-        .card {
-            width: 350px;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            margin-left: 450px;
-        }
-
-        h1 {
-            font-size: 22px;
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        label {
-            font-size: 14px;
-            font-weight: bold;
-            display: block;
-            text-align: left;
-            margin: 5px 0;
-        }
-
-        input {
-            width: 100%;
-            padding: 8px;
-            margin: 5px 0 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        input[type="submit"] {
-            background-color: #007BFF;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        input[type="submit"]:hover {
-            background-color:rgb(18, 18, 19);
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            margin: auto;
         }
     </style>
 </head>
+<body style="background-color: #3F627E;">
+    
+<section class="container mt-5 d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="card p-4 shadow-sm" style="width: 400px; height: 500px; background-color: #FFFFFF;">
+        <h1 class="mb-4 text-center" style="font-size: 70;">Log in</h1>
 
+        <!-- แสดงข้อความแจ้งเตือน (ถ้ามี) -->
+        <?php if (isset($_SESSION['message'])): ?>
+            <div class="alert alert-info">
+                <?= $_SESSION['message']; ?>
+            </div>
+            <?php unset($_SESSION['message']); ?>
+        <?php endif; ?>
 
-<body>
-    <div class="card">
-        <h1>เข้าสู่ระบบ</h1>
         <form action="/login" method="post">
-            <label for="email">อีเมล:</label>
-            <input type="email" id="email" name="email" required>
+            <div class="mb-3 col-12">
+                <label for="email" class="form-label">อีเมล:</label>
+                <input type="email" class="form-control" id="email" name="email" 
+                       placeholder="กรอกอีเมลของคุณ" value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>" required>
+            </div>
 
-            <label for="password">รหัสผ่าน:</label>
-            <input type="password" id="password" name="password" required>
-
-            <input type="submit" value="เข้าสู่ระบบ">
+            <div class="mb-3 col-12">
+                <label for="password" class="form-label">รหัสผ่าน:</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="กรอกรหัสผ่าน" required>
+            </div>
+            <div class="checkbox-label p-2">
+            <div class="mr-2"><input type="checkbox" id="checkbox1"></div>
+            <div class="mb-1" style="margin-left: 10px;"><label for="checkbox1">Remember Me</label></div>
+    </div>
+            <button type="submit" class="btn btn-primary w-100 mt-2" style="border-radius: 20px; background-color: #3F627E;">Login</button>
+            <div class="p-3"><a href="#">Not a member?</a></div>
         </form>
-        <?php
-
-
-                // แสดงข้อความแจ้งเตือนถ้ามี
-                if (isset($_SESSION['message'])) {
-                    echo "<p>{$_SESSION['message']}</p>";
-                    unset($_SESSION['message']);  // ลบข้อความออกหลังจากแสดงผลแล้ว
-                }
-
-?>
     </div>
+</section>
 
-    <div style="display: flex; margin-left: 450px; margin-top: 50px;">
-    <?php
-// เรียกฟังก์ชันเพื่อดึงอีเมลทั้งหมดจากฐานข้อมูล
-$emails = getAllEmailsFromDatabase();
 
-if ($emails) {
-    // ถ้ามีอีเมล
-    foreach ($emails as $email) {
-        echo "อีเมล: " . $email . "<br>";
-    }
-} else {
-    echo "ไม่พบข้อมูลอีเมล";
-}
 
-?>
-    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
+</html>
