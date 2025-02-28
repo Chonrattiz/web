@@ -1,71 +1,74 @@
+<!DOCTYPE html>
+<html lang="th">
 
-
-<html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journy Hub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
+        .login {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    padding: 5px 15px; /* ลดขนาด padding ให้ปุ่มเล็กลง */
+    font-size: 14px; /* ลดขนาดตัวหนังสือ */
+    border-radius: 20px; /* ให้โค้งเล็กลง */
+    cursor: pointer;
+    transition: 0.3s;
+    margin-right: 10px;
+}
 
-        header {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 10px;
-        }
+.login:hover {
+    background-color: black;
+    color: white;
+}
 
-        nav {
-            background-color: #333;
-            overflow: hidden;
-        }
+.register {
+    background-color: #3F627E;
+    color: black;
+    border: 2px solid black;
+    padding: 5px 15px; /* ลดขนาด padding ให้ปุ่มเล็กลง */
+    font-size: 14px; /* ลดขนาดตัวหนังสือ */
+    border-radius: 50px; /* ทำให้ปุ่มกลม */
+    cursor: pointer;
+    transition: 0.3s;
+    color: white;
+}
 
-        nav a {
-            float: left;
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 20px;
-            text-decoration: none;
-        }
+.register:hover {
+    background-color: black;
+    color: white;
+}
+body{
+    background-color: #3F627E;
+}
 
-        nav a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-        nav a.active {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
     </style>
 </head>
 
 <body>
-    <header>
-        <h1>ระบบลงทะเบียนเรียน</h1>
-    </header>
-    <nav>
-        <a href="/">หน้าแรก</a>
-        <?php if (isset($_SESSION['timestamp'])): ?>
-            <a href="/profile">ข้อมูลนักเรียน</a>
-            <a href="/courses">รายวิชา</a>
-            <a href="/logout">ออกจากระบบ</a>
-        <?php else: ?>
-            <a href="/login">เข้าสู่ระบบ</a>
-        <?php endif; ?>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" style="margin-left: 10px;">Journy Hub</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mynavbar">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <button class="login" onclick="location.href='/login'">Login</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="register" onclick="location.href='#'">Register</button>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
     </nav>
 
-    <div class="container">
-        <!-- Content goes here -->
-    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
