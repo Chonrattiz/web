@@ -21,6 +21,7 @@ CREATE TABLE Activity (
     location VARCHAR(255) NOT NULL,
     description VARCHAR(255),
     cid INT NOT NULL,  -- หมวดหมู่ของกิจกรรม
+    image VARCHAR(255),
     FOREIGN KEY (uid) REFERENCES User(uid) ON DELETE CASCADE,
     FOREIGN KEY (cid) REFERENCES Category(cid) ON DELETE CASCADE
 );
