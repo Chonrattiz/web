@@ -52,7 +52,7 @@ CREATE TABLE Participant (
     FOREIGN KEY (aid) REFERENCES Activity(aid) ON DELETE CASCADE,
     FOREIGN KEY (uid) REFERENCES User(uid) ON DELETE CASCADE
 );
-
+ALTER TABLE Activity ADD COLUMN image VARCHAR(255);
 INSERT INTO User (uid, Email, Full_name, Password, Date_of_Birth, Gender) VALUES
 (1, 'user1@example.com', 'Alice Smith', 'password123', '2000-05-15', 'Female'),
 (2, 'user2@example.com', 'Bob Johnson', 'password456', '1998-08-22', 'Male'),
