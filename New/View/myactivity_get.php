@@ -42,6 +42,7 @@
         .btn-edit {
             background-color: #3DA423;
             border-radius: 5px;
+            padding: 5px;
         }
         .btn-edit a {
             color: white;
@@ -51,6 +52,7 @@
         .btn-del {
             background-color: #D42323;
             border-radius: 5px;
+            padding: 5px;
         }
         .btn-del a {
             color: white;
@@ -115,6 +117,25 @@
             right: 10px;
             bottom: 10px;
         }
+        .btn-add {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+        .btn-add button {
+            background-color: #3F627E;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 10px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -146,6 +167,9 @@
         </div>
             </div>
         </section>
+        <div class="btn-add">
+            <button>เพิ่มกิจกรรม</button>
+        </div>
         
 
 
