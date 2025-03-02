@@ -53,8 +53,8 @@ $firstName = $_SESSION['full_name'] ?? 'Guest';
           </div>
 
           <div class="mb-3">
-        <label for="activityImage" class="form-label">อัปโหลดรูปกิจกรรม</label>
-        <input type="file" class="form-control" id="activityImage" name="image" accept="image/*">
+        <label for="images">เลือกภาพ (สามารถเลือกหลายภาพ):</label>
+        <input type="file" name="image[]" multiple />
     </div>
 
     <div class="mb-3">
@@ -64,7 +64,9 @@ $firstName = $_SESSION['full_name'] ?? 'Guest';
 
 
                 <button type="submit" class="btn btn-primary w-100">สร้าง</button>
+             
             </form>
+            <a href="/index"><button type="submit" class="btn btn-danger w-100">ยกเลิก</button></a>
         </div>
     </div>
 </section>
