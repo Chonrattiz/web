@@ -1,178 +1,150 @@
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Row Layout</title>
+        <style>
+            .container {
+                width: 1443px;
+                height: 400px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                background-color:#3F627E;
+                margin: auto;
+                
+            }
+            .col {
+                text-align: center;
+            }
+            .col-1 {
+                flex: 1;
+            }
+            .col-1 img {
+                width: 500px;
+                height: 299px;
+                object-fit: cover;
+                margin-left: 50px;
+            }
+            .col-2 {
+                flex: 2;
+                text-align: left;
+                padding-left: 20px;
+                width: 500px;
+                height: 300px;
+                background-color: rgba(238, 228, 228, 0.8);
+            }
+            .col-3 {
+                flex: 1;
+                display: flex;
+                flex-direction: row;
+                gap: 15px;
+            }
+            .buttons {
+                padding: 10px;
+                border: none;
+                cursor: pointer;
+                border-radius: 5px;
+                width: 100%;
+                margin-left: 20px;
+            }
+            .btn-primary {
+                background-color: blue;
+                color: white;
+            }
+            .btn-secondary {
+                background-color: gray;
+                color: white;
+            }
+            p {
+                font-family: 'Sarabun', 'Sukhumvit Set', 'Tahoma';
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 1.6;
+                text-align: justify;
+                margin: 10px 0;
+                padding-right: 10px;
+            }
+            .d-flex.row {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+            }
+            .check {
+                display: flex;
+                align-items: self-end;
+                margin-top: 50px;
+                margin-left: 500px;
+            }
+        </style>
+    </head>
+    <body>
+    <a href=""></a>
+    <?php
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>myactivity</title>
-    <style>
-        .title {
-            margin-left: 3rem;
-            margin-bottom: 2rem;
+    
+    // ตรวจสอบว่า 'activity' ถูกส่งมาจากฟังก์ชัน renderView
+    if (isset($data['activity']) && !empty($data['activity'])):
+        $activities = $data['activity'];  // ดึงข้อมูลกิจกรรมจาก $data
 
-        }
-        .content {
-            display: flex;
-            background-color: #FFFFFF;
-            padding: 10px;
-        }
+        // ลูปแสดงกิจกรรมทั้งหมด
+        foreach ($activities as $activity):
+    ?>
+        <div class="container">
+   
+        <div class="col col-1">
+    <form action="/homeactivity" method="POST">
+        <?php
+        $images = explode(',', $activity['image']);
+        ?>
+        <input type="hidden" name="aid" value="<?php echo htmlspecialchars($activity['aid']); ?>">
+        <button type="submit" style="border: none; background: none;">
+            <img src="<?php echo htmlspecialchars($images[0]); ?>" alt="Activity Image" />
+        </button>
+    </form>
+</div>
 
-        .content img {
-            max-width: 100%;
-            height: auto;
-        }
-        .content-btn {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 5px;
-            padding: 10px;
-            max-width: 100px;
-            
-        }
-        .btn {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 5px;
-            padding: 5px;
-            max-width: 100px;
-        }
-        .btn-edit {
-            background-color: #3DA423;
-            border-radius: 5px;
-            padding: 5px;
-        }
-        .btn-edit a {
-            color: white;
-            text-decoration: none;
-            padding: 10px;
-        }
-        .btn-del {
-            background-color: #D42323;
-            border-radius: 5px;
-            padding: 5px;
-        }
-        .btn-del a {
-            color: white;
-            text-decoration: none;
-            padding: 5px;
-        }
-        .btn-edit a, .btn-del a {
-            color: white;
-            text-decoration: none;
-            padding: 5px 10px; /* Adjust padding to reduce size */
-        }
-        .maincontent {
-            background-color: #3F627E;
-            margin: 4rem 0;
-        }
-        .maincontent-con {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-        }
-        .maincontent-img img {
-            width: 501px;
-            padding: 1.5rem;
-            margin: 0 42%;
-            gap: 5px;
-        }
-        .maincontent-info {
-            width: 410px;
-            height: 218px;
-            padding: 2rem;
-            margin: 1.5rem 13.5%;
-            background-color: #FFFFFF;
-            opacity: 70%;
-        }
-        .maincontent-info h3 {
-            font-family: 'sarabun', 'Sukhumvit Set', 'Tahoma';
-            font-size: 20px;
-            font-weight: 600;
-            line-height: 2.0rem;
-            margin: 0 0 1rem 0;
-            margin-bottom: 1rem;
-            padding: 0;
-        }
-        .maincontent-info p {
-            font-family: 'sarabun', 'Sukhumvit Set', 'Tahoma';
-            font-size: 15px;
-            font-weight: 500;
-            line-height: 1.3rem;
-            margin: 0 0 3rem 0;
-            padding: 0;
-        }
-        .maincontent-info a {
-            font-family: 'sarabun', 'Sukhumvit Set', 'Tahoma';
-            font-size: 15px;
-            font-weight: 300;
-            margin-left: 65%;
-            color:black;
-            text-decoration: none;
-            background-color: #C3CD7C;
-            padding: 5px 15px;
-            border-radius: 20px;
-            right: 10px;
-            bottom: 10px;
-        }
-        .btn-add {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
-        }
-        .btn-add button {
-            background-color: #3F627E;
-            color: white;
-            border: none;
-            border-radius: 20px;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 10px;
-            margin: 4px 2px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="title">
-        <h3>กิจกรรมของฉัน</h3>
-    </div>
-
-    <section class="maincontent">
-            <div class="container">
-                <div class="maincontent-con">
-                    <div class="maincontent-img">
-                    <img src="https://www.camphub.in.th/wp-content/uploads/2025/01/CiRA-CORE-CAMP-4-750x422.jpg" alt="">
+      
+            <div class="col col-2">
+                <div class="d-flex row">
+                    <h2><?php echo htmlspecialchars($activity['name']); ?></h2>
+                    <button>Accept</button>
+                </div>
+                <div class="col">
+                     <?php echo htmlspecialchars($activity['description']); ?></p>
+                    <div style="display: flex;">
+                        <button class="check">เช็คชื่อ</button>
                     </div>
-                    <div class="maincontent-info">
-                        <h3>GTC : Cira Core Camp</h3>
-                        <p>มีน้อง ๆ จำนวนไม่น้อยที่ชอบหาอาชีพเสริมทำระหว่างเรียน ซึ่งหนึ่งในอาชีพที่น้อง ๆ วัยเรียนชอบทำกันนั่นก็คือ ‘ขายของออนไลน์’ เหตุผลที่การขายของออนไลน์เป็นที่นิยม เพราะว่าสินค้าบางอย่างใช้ต้นทุนน้อย แถมปัจจุบันคนแห่ซื้อขายของผ่านทางออนไลน์กันมากขึ้น ทำให้ตลาดออนไลน์มีแนวโน้มเติบโตอย่างมาก</p>
-                        <a href="#">เช็คชื่อสมาชิก</a>
-                    </div>
-                    <div class="content-btn">
-                    <div class="btn">
-            <div class="btn-edit">
-                <a href="/editactivity">แก้ไข</a>
+                </div>
             </div>
-            <div class="btn-del">
-                <a href="#">ลบ</a>
-                    </div>
+            <div class="row col-3">
+                <div><button class="buttons btn-primary">ปุ่ม 1</button></div>
+                <div><button class="buttons btn-secondary">ปุ่ม 2</button></div>
             </div>
-        </div>
-            </div>
-        </section>
-        <div class="btn-add">
-            <button>เพิ่มกิจกรรม</button>
-        </div>
+
         
+        </div> <!-- ปิด .container -->
+
+        <div style="display: flex;   width: 1443px;
+                height: 70px; background-color: white;">
+
+            </div>
+    <?php
+        endforeach;
+    else:
+    ?>  
+    <div style="margin-left: 500px;">
+    <h2>ไม่มีกิจกกรรมที่คุณสร้าง</h2>
 
 
-</body>
+    </div>
+    
+    <?php
+    endif;
+    ?>
 
-</html>
+    <a href="/create"><button class="btn-primary">สร้างกิจกรรม</button></a>
+
+    </body>
+    </html>
