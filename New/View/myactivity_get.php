@@ -17,6 +17,7 @@
             }
             .col {
                 text-align: center;
+                padding: 10px;
             }
             .col-1 {
                 flex: 1;
@@ -50,12 +51,14 @@
                 margin-left: 20px;
             }
             .btn-primary {
-                background-color: blue;
+                background-color:rgb(21, 225, 99);
                 color: white;
+                border-radius: 10px;
             }
             .btn-secondary {
-                background-color: gray;
+                background-color:rgb(255, 0, 0);
                 color: white;
+                border-radius: 10px;
             }
             p {
                 font-family: 'Sarabun', 'Sukhumvit Set', 'Tahoma';
@@ -70,17 +73,27 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-around;
+                padding: 10px;
             }
+            
             .check {
                 display: flex;
                 align-items: self-end;
-                margin-top: 50px;
-                margin-left: 500px;
+                margin-top: 10px;
+                margin-left: 400px;
+                background-color: #C3CD7C;
+                border: none;
+                padding: 10px;
+                border-radius: 20px;
+            }
+            .icon-user img{
+                width: 40px;
+                height: 40px;
             }
         </style>
     </head>
     <body>
-    <a href=""></a>
+    
     <?php
 
     
@@ -109,18 +122,27 @@
             <div class="col col-2">
                 <div class="d-flex row">
                     <h2><?php echo htmlspecialchars($activity['name']); ?></h2>
-                    <button>Accept</button>
+                    <div class="icon-user">
+                        <a href="/editac">
+                            <img src="https://static.thenounproject.com/png/2863109-200.png" alt="">
+                        </a>
+                    </div>
                 </div>
                 <div class="col">
                      <?php echo htmlspecialchars($activity['description']); ?></p>
                     <div style="display: flex;">
-                        <button class="check">เช็คชื่อ</button>
+                        <button class="check">เช็คชื่อสมาชิก</button>
                     </div>
                 </div>
             </div>
             <div class="row col-3">
-                <div><button class="buttons btn-primary">ปุ่ม 1</button></div>
-                <div><button class="buttons btn-secondary">ปุ่ม 2</button></div>
+                <form action="/editac" method="POST">
+                    
+                <input type="hidden" name="aid" value="<?php echo htmlspecialchars($activity['aid']); ?>"><div>
+                    <button class="buttons btn-primary">แก้ไข</button></div>
+                    
+                </form>
+                <a href=""><div><button class="buttons btn-secondary">ลบ</button></div></a>
             </div>
 
         
