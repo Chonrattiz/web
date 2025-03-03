@@ -25,7 +25,7 @@ $user = [
         .card-custom { border-radius: 10px; }
         .profile-header { background-color: #335c81; color: white; padding: 20px; text-align: center; border-radius: 10px 10px 0 0; }
         .profile-img { width: 100px; height: 100px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-size: 40px; margin: auto; }
-
+        .profile-name { width: 100px; height: 100px;  display: flex; align-items: center; justify-content: center; font-size: 40px; margin: auto; }
         /* แถวข้อมูลโปรไฟล์ + Box 800px */
         .profile-content {
             display: flex;
@@ -70,7 +70,9 @@ $user = [
     <div class="card shadow card-custom">
         <div class="profile-header">
             <div class="profile-img">👤</div>
-            <h3>Journey Hub</h3>
+
+            <div class="profile-name"> <?= htmlspecialchars($firstName); ?> </div>
+
             <button class="btn edit-profile-btn">Edit Profile</button> 
         </div>
     </div>
@@ -81,9 +83,11 @@ $user = [
         <div class="card shadow card-custom box-fixed">
             <div class="card-body">
                 <h5 class="card-title">Profile</h5>
-                <p><strong>Name:</strong> <?= $user['name'] ?></p>
-                <p><strong>Email:</strong> <?= $user['email'] ?></p>
-                <p><strong>Gender:</strong> <?= $user['gender'] ?></p>
+                <p><strong>Name:</strong> <?= htmlspecialchars($firstName); ?></p>
+                <p><strong>Email:</strong> <?= htmlspecialchars($email); ?></p>
+                <p><strong>Gender:</strong> <?= isset($gender) ? htmlspecialchars($gender) : 'Not specified' ?></p> 
+
+
             </div>
         </div>
 
