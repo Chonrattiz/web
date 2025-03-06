@@ -40,15 +40,6 @@ CREATE TABLE Registration (
 );
 
 
-CREATE TABLE Participant (
-    pid INT AUTO_INCREMENT PRIMARY KEY,
-    check_status ENUM('ไม่เข้า', 'เข้า') NOT NULL DEFAULT 'ไม่เข้า',
-    aid INT NOT NULL,  -- ผู้เข้าร่วมกิจกรรมอะไร
-    uid INT NOT NULL,  -- ใครเข้าร่วมกิจกรรม
-    status ENUM('Pending', 'Approved', 'Rejected') NOT NULL DEFAULT 'Pending',
-    FOREIGN KEY (aid) REFERENCES Activity(aid) ON DELETE CASCADE,
-    FOREIGN KEY (uid) REFERENCES User(uid) ON DELETE CASCADE
-);
 
 
 INSERT INTO User (uid, Email, Full_name, Password, Date_of_Birth, Gender) VALUES
