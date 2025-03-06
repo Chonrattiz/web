@@ -29,16 +29,15 @@ CREATE TABLE Activity (
 
 
 
-
 CREATE TABLE Registration (
     rid INT AUTO_INCREMENT PRIMARY KEY,
     uid INT NOT NULL,  -- ใครสมัครเข้าร่วมกิจกรรม
     aid INT NOT NULL,  -- สมัครเข้าร่วมกิจกรรมอะไร
     status ENUM('Pending', 'Approved', 'Rejected') NOT NULL DEFAULT 'Pending',
+    check_user ENUM('เข้ากิจกรรม', 'ขาด') NOT NULL DEFAULT 'ขาด',  -- เพิ่มคอลัมน์การเช็คชื่อ
     FOREIGN KEY (uid) REFERENCES User(uid) ON DELETE CASCADE,
     FOREIGN KEY (aid) REFERENCES Activity(aid) ON DELETE CASCADE
 );
-
 
 
 
