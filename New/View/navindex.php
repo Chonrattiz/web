@@ -13,33 +13,34 @@
             padding: 15px 30px;
             background-color: white;
             box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-            margin-bottom: 100px;
         }
 
         .navbar a {
             color: #333;
-            margin: 2vh;
+            margin: 0 15px;
             text-decoration: none;
         }
 
         .search-bar {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start; 
-    gap: 10px;
-    margin-left: 50%;
-}
-
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            /* เพิ่มระยะห่าง */
+            margin-left: auto;
+            margin-right: 20px;
+            /* เพิ่มระยะห่างจาก Hamburger Menu */
+        }
 
         .search-bar input {
             padding: 5px 10px;
             border: 1px solid #ccc;
-            border-radius: 2vb;
+            border-radius: 5px;
         }
+
         .search-bar button {
             padding: 5px 10px;
-            border: 1px solid #ccc;
-            border-radius: 2vb;
+            border: none;
+            border-radius: 25px;
             background-color: #3F627E;
             color: white;
             cursor: pointer;
@@ -61,14 +62,14 @@
         .slider-menu {
             position: fixed;
             top: 0;
-            right: -550px;
-            height: 700px;
+            right: -300px;
+            height: 100vh;
             width: 250px;
             background-color: #3F627E;
             color: white;
             padding: 20px;
             transition: right 0.3s ease;
-            z-index: 999;
+            z-index: 1000;
         }
 
         .slider-menu ul {
@@ -92,24 +93,22 @@
 </head>
 
 <body>
-
-    <!-- Navbar -->
     <nav class="navbar">
         <div>
-            <a href="/index">Home</a>
-            <a href="/index">About</a>
-            <a href="/index">Contact</a>
+            <a href="/home">Home</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
         </div>
 
         <div class="search-bar">
-            <form action="/navindex" method="POST">
-                <input type="text" name="query" placeholder="Search..." >
+            <form action="/search" method="POST">
+                <input type="text" name="query" placeholder="Search...">
+                <input type="date" name="start_date" placeholder="Start Date">
+                <input type="date" name="end_date" placeholder="End Date">
                 <button type="submit">Search</button>
             </form>
         </div>
 
-
-        <!-- Hamburger Menu -->
         <div class="hamburger-menu" onclick="toggleSliderMenu(event)">
             <div></div>
             <div></div>
@@ -125,51 +124,35 @@
     $gender = $_SESSION['gender'] ?? 'Guest';
 
     ?>
-    <!-- Slider Menu -->
+
     <div class="slider-menu" id="sliderMenu">
         <ul>
-            <h2 class="fw-bold gradient-text"> <?= htmlspecialchars($firstName); ?> 🎉</h2>
-            <p class="fw-bold gradient-text"> <?= htmlspecialchars($email); ?> </p>
-
-            <p>____________________________________</p>
-            <li><a href="/index">Home</a></li>
-
-            <li><a href="/create">Create Activity</a></li>
-
-            <li><a href="">Notifications</a></li>
-
-            <li><a href="/myactivity">Check status</a></li>
-
-            <li><a href="/profile">Profile</a></li>
-
-            <li><a href="/logout">Logout</a></li>
+            <h2><?= htmlspecialchars($firstName); ?> 🎉</h2>
+            <p><?= htmlspecialchars($email); ?></p>
+            <hr>
+            <li><a href="/index">🏠 Home</a></li>
+            <li><a href="/create">📝 Create Activity</a></li>
+            <li><a href="/myactivity">✅ Check Status</a></li>
+            <li><a href="/profile">👤 Profile</a></li>
+            <li><a href="/logout">🚪 Logout</a></li>
         </ul>
     </div>
 
-
-
-
-
-
     <script>
-        // Toggle the slider menu
         function toggleSliderMenu(event) {
             const sliderMenu = document.getElementById('sliderMenu');
             sliderMenu.classList.toggle('active');
-            event.stopPropagation(); // Prevent event propagation to the document
+            event.stopPropagation();
         }
 
-        // Close the slider menu when clicking anywhere outside
         document.addEventListener('click', function(event) {
             const sliderMenu = document.getElementById('sliderMenu');
             const hamburgerMenu = document.querySelector('.hamburger-menu');
-            // Check if the click is outside the slider menu or hamburger menu
             if (!sliderMenu.contains(event.target) && !hamburgerMenu.contains(event.target)) {
                 sliderMenu.classList.remove('active');
             }
         });
     </script>
-
 </body>
 
 </html>
