@@ -50,7 +50,10 @@ INSERT INTO User (uid, Email, Full_name, Password, Date_of_Birth, Gender) VALUES
 INSERT INTO Category (cid, name) VALUES
 (1, 'กีฬา'),
 (2, 'วิชาการ'),
-(3, 'บันเทิง');
+(3, 'บันเทิง'),
+(4, 'จิตอาสา'),
+(5, 'ดนตรี'),
+(6, 'สร้างสรรค์');
 
 
 INSERT INTO Activity (aid, name, start_date, end_date, uid, location, description, cid) VALUES
